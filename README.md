@@ -28,28 +28,7 @@
 
 ## 系統架構
 
-```mermaid
-flowchart TB
-    subgraph 建庫["RAG01：建立向量庫"]
-        KB[繁中知識庫 .md] --> S1[依 Markdown 標題切塊<br/>H1–H4]
-        S1 --> S2[過長段落二次切分<br/>650 字 / 重疊 80]
-        S2 --> S3[每塊加上【章節】麵包屑]
-        S3 --> E[embeddinggemma-300m<br/>title: 章節 / text: 內文]
-        E --> F[(FAISS)]
-    end
-    subgraph 問答["RAG02：問答"]
-        U[使用者問題] --> G{安全邊界}
-        G -- 違法／投資明牌 --> X[直接擋下]
-        G -- 通過 --> SY[同義詞擴充<br/>推特→Twitter X…]
-        SY --> V[向量檢索 Top-4]
-        SY --> K[關鍵字 IDF 檢索<br/>中文 2-gram]
-        V --> M[合併為 5 段參考資料]
-        K --> M
-        M --> L[Groq gpt-oss-120b<br/>馬斯克人設＋防幻覺規則]
-        L --> P[後處理：移除官腔收尾<br/>附上撈到的段落]
-    end
-    F --> V
-```
+<p align="center"><img src="docs/flowchart.svg" alt="系統架構圖" width="100%"></p>
 
 ## 設計重點
 

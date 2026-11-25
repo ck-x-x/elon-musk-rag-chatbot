@@ -1,0 +1,107 @@
+<svg xmlns="http://www.w3.org/2000/svg" width="960" height="844" viewBox="0 0 960 844" role="img" aria-label="系統架構：RAG01 建立向量庫、RAG02 問答">
+  <defs>
+    <marker id="arrow" viewBox="0 0 10 10" refX="9" refY="5" markerWidth="7" markerHeight="7" orient="auto-start-reverse" markerUnits="userSpaceOnUse">
+      <path d="M1 1 L9 5 L1 9" fill="none" stroke="#86868B" stroke-width="1.6" stroke-linecap="round" stroke-linejoin="round"/>
+    </marker>
+    <style>
+      text { font-family: -apple-system, BlinkMacSystemFont, "SF Pro Text", "PingFang TC", "Noto Sans TC", "Microsoft JhengHei", "Segoe UI", sans-serif; text-anchor: middle; dominant-baseline: central; }
+      .t { font-size: 14px; font-weight: 600; fill: #1D1D1F; }
+      .s { font-size: 12px; fill: #6E6E73; }
+      .lbl { font-size: 12px; fill: #6E6E73; }
+      .grp { fill: #FAFAFC; stroke: #E5E5EA; stroke-width: 1; }
+      .gt { font-size: 13px; font-weight: 600; fill: #6E6E73; text-anchor: start; letter-spacing: 0.2px; }
+      .step { fill: #F5F5F7; }
+      .core { fill: #EBF3FF; stroke: #3186FF; stroke-width: 1.2; }
+      .end { fill: #FFFFFF; stroke: #D2D2D7; stroke-width: 1; }
+      .edge { fill: none; stroke: #86868B; stroke-width: 1.5; marker-end: url(#arrow); }
+      .pill { fill: #FAFAFC; }
+    </style>
+  </defs>
+
+  <rect width="960" height="844" fill="#FFFFFF"/>
+
+  <!-- groups -->
+  <rect class="grp" x="24" y="24" width="300" height="644" rx="18"/>
+  <text class="gt" x="48" y="52">RAG01：建立向量庫</text>
+  <rect class="grp" x="348" y="24" width="588" height="796" rx="18"/>
+  <text class="gt" x="372" y="52">RAG02：問答</text>
+
+  <!-- edges: RAG01 -->
+  <path class="edge" d="M174 132 V170"/>
+  <path class="edge" d="M174 240 V278"/>
+  <path class="edge" d="M174 348 V386"/>
+  <path class="edge" d="M174 440 V478"/>
+  <path class="edge" d="M174 548 V586"/>
+
+  <!-- edges: RAG02 -->
+  <path class="edge" d="M590 132 V174"/>
+  <path class="edge" d="M670 204 H788"/>
+  <path class="edge" d="M590 232 V294"/>
+  <path class="edge" d="M560 364 C560 394, 480 390, 480 418"/>
+  <path class="edge" d="M620 364 C620 394, 720 390, 720 418"/>
+  <path class="edge" d="M480 488 C480 508, 560 502, 560 522"/>
+  <path class="edge" d="M720 488 C720 508, 620 502, 620 522"/>
+  <path class="edge" d="M590 576 V614"/>
+  <path class="edge" d="M590 684 V722"/>
+
+  <!-- cross edge: FAISS -> vector search -->
+  <path class="edge" d="M294 614 C340 614, 336 454, 378 454"/>
+
+  <!-- edge labels -->
+  <rect class="pill" x="680" y="194" width="100" height="20" rx="10"/><text class="lbl" x="730" y="204">違法／投資明牌</text>
+  <rect class="pill" x="570" y="254" width="40" height="20" rx="10"/><text class="lbl" x="590" y="264">通過</text>
+
+  <!-- RAG01 nodes -->
+  <rect class="step" x="54" y="80" width="240" height="52" rx="14"/>
+  <text class="t" x="174" y="106">繁中知識庫 .md</text>
+
+  <rect class="step" x="54" y="172" width="240" height="68" rx="14"/>
+  <text class="t" x="174" y="196">依 Markdown 標題切塊</text>
+  <text class="s" x="174" y="218">H1–H4</text>
+
+  <rect class="step" x="54" y="280" width="240" height="68" rx="14"/>
+  <text class="t" x="174" y="304">過長段落二次切分</text>
+  <text class="s" x="174" y="326">650 字 / 重疊 80</text>
+
+  <rect class="step" x="54" y="388" width="240" height="52" rx="14"/>
+  <text class="t" x="174" y="414">每塊加上【章節】麵包屑</text>
+
+  <rect class="step" x="54" y="480" width="240" height="68" rx="14"/>
+  <text class="t" x="174" y="504">embeddinggemma-300m</text>
+  <text class="s" x="174" y="526">title: 章節 / text: 內文</text>
+
+  <rect class="end" x="54" y="588" width="240" height="52" rx="14"/>
+  <text class="t" x="174" y="614">FAISS 向量庫</text>
+
+  <!-- RAG02 nodes -->
+  <rect class="step" x="500" y="80" width="180" height="52" rx="14"/>
+  <text class="t" x="590" y="106">使用者問題</text>
+
+  <rect class="core" x="510" y="176" width="160" height="56" rx="14"/>
+  <text class="t" x="590" y="204">安全邊界</text>
+
+  <rect class="end" x="790" y="176" width="120" height="56" rx="14"/>
+  <text class="t" x="850" y="204">直接擋下</text>
+
+  <rect class="step" x="480" y="296" width="220" height="68" rx="14"/>
+  <text class="t" x="590" y="320">同義詞擴充</text>
+  <text class="s" x="590" y="342">推特 → Twitter X…</text>
+
+  <rect class="step" x="380" y="420" width="200" height="68" rx="14"/>
+  <text class="t" x="480" y="454">向量檢索 Top-4</text>
+
+  <rect class="step" x="620" y="420" width="200" height="68" rx="14"/>
+  <text class="t" x="720" y="444">關鍵字 IDF 檢索</text>
+  <text class="s" x="720" y="466">中文 2-gram</text>
+
+  <rect class="step" x="480" y="524" width="220" height="52" rx="14"/>
+  <text class="t" x="590" y="550">合併為 5 段參考資料</text>
+
+  <rect class="step" x="460" y="616" width="260" height="68" rx="14"/>
+  <text class="t" x="590" y="640">Groq gpt-oss-120b</text>
+  <text class="s" x="590" y="662">馬斯克人設＋防幻覺規則</text>
+
+  <rect class="step" x="460" y="724" width="260" height="68" rx="14"/>
+  <text class="t" x="590" y="748">後處理：移除官腔收尾</text>
+  <text class="s" x="590" y="770">附上撈到的段落</text>
+</svg>
